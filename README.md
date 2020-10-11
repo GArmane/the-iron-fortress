@@ -1,2 +1,2 @@
-# the-iron-fortress
+# The Iron Fortress
 The Iron Fortress game
