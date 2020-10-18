@@ -5,8 +5,6 @@ class_name State
 extends Node
 
 
-
-
 # Initialize state.
 func enter():
 	return
