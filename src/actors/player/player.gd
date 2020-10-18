@@ -1,3 +1,4 @@
+class_name Player
 extends KinematicBody2D
 
 const UP = Vector2(0, -1)
