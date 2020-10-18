@@ -4,16 +4,20 @@ Base interface for all states.
 class_name State
 extends Node
 
+# warning-ignore:unused_signal
+signal finished(next_state_name)
+
 
 # Initialize state.
-func enter():
+func enter() -> void:
 	return
 
 
 # Clean up state.
-func exit():
+func exit() -> void:
 	return
 
 
-func update(delta: float):
+# Function called every physics frame.
+func update(_delta: float) -> void:
 	pass
