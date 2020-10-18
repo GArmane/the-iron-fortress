@@ -30,6 +30,10 @@ config/name="The Iron Fortress"
 run/main_scene="res://src/levels/test_player_mov_001/TestPlayerMov001.tscn"
 config/icon="res://icon.png"
 
+[editor_plugins]
+
+enabled=PoolStringArray( "gut" )
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"
