@@ -8,14 +8,10 @@
 [ext_resource path="res://src/actors/player/player_fsm/states/jumping.gd" type="Script" id=6]
 [ext_resource path="res://src/actors/player/player_fsm/states/falling.gd" type="Script" id=7]
 
-
-
-
-
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 16.0909, 29.0473 )
+extents = Vector2( 16.0909, 30.2321 )
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=2]
 resource_name = "falling"
 length = 0.3
 loop = true
@@ -31,21 +27,8 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 22, 23 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 6, 2 ) ]
-}
 
-[sub_resource type="Animation" id=2]
-resource_name = "idle"
+[sub_resource type="Animation" id=3]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -58,18 +41,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
 "values": [ 0, 1, 2, 3 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 0, 5.926 ) ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -87,21 +58,8 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 14, 15, 16, 17 ]
 }
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 5.926 ), Vector2( 5, 5.926 ), Vector2( 5, -8 ) ]
-}
 
-[sub_resource type="Animation" id=3]
-resource_name = "walking"
+[sub_resource type="Animation" id=5]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -114,18 +72,6 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 9, 10, 11, 12, 13 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("CollisionShape2D:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Vector2( 6, 5.926 ) ]
 }
 
 [node name="Player" type="KinematicBody2D"]
@@ -152,6 +98,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 vframes = 12
 hframes = 8
+frame = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 5.926 )
@@ -159,7 +106,7 @@ shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
-anims/falling = SubResource( 5 )
-anims/idle = SubResource( 2 )
+anims/falling = SubResource( 2 )
+anims/idle = SubResource( 3 )
 anims/jumping = SubResource( 4 )
-anims/walking = SubResource( 3 )
+anims/walking = SubResource( 5 )
