@@ -18,6 +18,11 @@ func exit() -> void:
 	return
 
 
-# Function called every physics frame.
+# Function called every physics frame by the state machine.
 func update(_delta: float) -> void:
-	pass
+	return
+
+
+# Function called every time an input arrives at the state machine.
+func handle_input(_event: InputEvent) -> void:
+	return
