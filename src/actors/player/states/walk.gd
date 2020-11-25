@@ -12,8 +12,13 @@ func handle_input(event: InputEvent) -> void:
 
 
 func update(_delta: float) -> void:
+	if _is_falling():
+		emit_signal("finished", "fall")
+		return
+
 	var input_direction = _get_input_direction()
 	if not input_direction:
 		emit_signal("finished", "idle")
-	player.direction = input_direction
-	player.motion.x = input_direction.x
+		return
+
+	_set_motion(input_direction)

@@ -8,10 +8,5 @@ func _ready() -> void:
 		"idle": $Idle,
 		"jump": $Jump,
 		"walk": $Walk,
+		"fall": $Fall,
 	}
-
-
-func on_state_finished(next_state: String) -> void:
-	if next_state in ["jump"]:
-		_stack.push(_states[next_state])
-	.on_state_finished(next_state)
