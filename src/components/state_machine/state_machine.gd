@@ -35,6 +35,10 @@ func _enter_state(state: State):
 
 
 # Public API
+func get_current_state():
+	return _stack.peek()
+
+
 func initialize() -> void:
 	set_active(true)
 
@@ -56,6 +60,17 @@ func is_active() -> bool:
 	return _active
 
 
+func pop_state() -> void:
+	var current_state = _stack.pop()
+	current_state.exit()
+
+
+func push_state(state: String) -> void:
+	var new_state = _states[state]
+	new_state.enter()
+	_stack.push(new_state)
+
+
 func set_active(value: bool) -> void:
 	_active = value
 	set_physics_process(value)
@@ -63,12 +78,10 @@ func set_active(value: bool) -> void:
 
 
 # Signal handlers
-func on_state_finished(next_state: String) -> void:
-	var current_state = _stack.pop()
-	current_state.exit()
+func on_state_finished(next: String) -> void:
+	pop_state()
 	
-	if next_state != "previous":
-		var new_state = _states[next_state]
-		_stack.push(new_state)
-
-	_stack.peek().enter()
+	if next == "previous":
+		get_current_state().enter()
+	else:
+		push_state(next)
