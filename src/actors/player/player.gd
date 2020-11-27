@@ -15,12 +15,17 @@ export var speed = 200
 func _physics_process(_delta):
 	motion.x *= speed
 	motion.y += GRAVITY
-	motion = move_and_slide(motion, UP)
+	motion = move_and_slide(motion, UP, true)
 
 
 # Public API
 func current_animation() -> String:
 	return $AnimationPlayer.current_animation
+
+
+func is_falling() -> bool:
+	var next_to_ground = test_move(transform, Vector2(0, 10))
+	return motion.y >= 0 and not next_to_ground
 
 
 func play_animation(name: String) -> void:

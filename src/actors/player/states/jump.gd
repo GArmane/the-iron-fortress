@@ -7,9 +7,10 @@ func enter() -> void:
 
 
 func update(_delta: float) -> void:
-	if _is_falling():
+	if player.is_on_floor():
+		emit_signal("finished", "idle")
+	elif player.is_falling():
 		emit_signal("finished", "fall")
-		return
-
-	var input_direction = _get_input_direction()
-	_set_motion(input_direction)
+	else:
+		var input_direction = _get_input_direction()
+		_set_motion(input_direction)

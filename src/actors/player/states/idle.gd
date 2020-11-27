@@ -13,7 +13,7 @@ func handle_input(event: InputEvent) -> void:
 
 
 func update(_delta: float) -> void:
-	if _is_falling():
+	if player.is_falling():
 		emit_signal("finished", "fall")
 		return
 
