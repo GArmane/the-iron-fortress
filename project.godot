@@ -48,6 +48,11 @@ config/name="The Iron Fortress"
 run/main_scene="res://src/levels/test_player_mov_001/TestPlayerMov001.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/vsync/use_vsync=false
+window/stretch/aspect="expand"
+
 [editor_plugins]
 
 enabled=PoolStringArray( "gut" )
