@@ -1,11 +1,10 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://assets/sprites/player/sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/actors/player/player.gd" type="Script" id=2]
 [ext_resource path="res://src/components/player_state_machine/player_state_machine.gd" type="Script" id=3]
 
 [sub_resource type="Animation" id=6]
-resource_name = "attack1"
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyPivot/Sprite:frame")
@@ -14,15 +13,15 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 42, 43, 44, 45, 46 ]
+"values": [ 14, 15, 16, 17 ]
 }
 
 [sub_resource type="Animation" id=7]
-resource_name = "attack2"
-length = 0.6
+resource_name = "ledge_climb"
+length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyPivot/Sprite:frame")
 tracks/0/interp = 1
@@ -30,15 +29,14 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 47, 48, 49, 50, 51, 52 ]
+"values": [ 33, 34, 35, 36, 37 ]
 }
 
 [sub_resource type="Animation" id=8]
-resource_name = "attack3"
-length = 0.6
+resource_name = "ledge_grab"
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyPivot/Sprite:frame")
@@ -47,13 +45,13 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.2, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 53, 54, 55, 56, 57, 58 ]
+"values": [ 29, 30, 31, 32 ]
 }
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=9]
 resource_name = "fall"
 length = 0.3
 loop = true
@@ -70,7 +68,7 @@ tracks/0/keys = {
 "values": [ 22, 23 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=10]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyPivot/Sprite:frame")
@@ -85,7 +83,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=11]
 resource_name = "jump"
 length = 0.6
 tracks/0/type = "value"
@@ -101,8 +99,7 @@ tracks/0/keys = {
 "values": [ 14, 15, 16, 17 ]
 }
 
-[sub_resource type="Animation" id=11]
-resource_name = "ledge_climb"
+[sub_resource type="Animation" id=12]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyPivot/Sprite:frame")
@@ -117,23 +114,7 @@ tracks/0/keys = {
 "values": [ 33, 34, 35, 36, 37 ]
 }
 
-[sub_resource type="Animation" id=10]
-resource_name = "ledge_grab"
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("BodyPivot/Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2, 0.6, 0.8 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 29, 30, 31, 32 ]
-}
-
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=13]
 resource_name = "walk"
 loop = true
 tracks/0/type = "value"
@@ -149,8 +130,9 @@ tracks/0/keys = {
 "values": [ 9, 10, 11, 12, 13 ]
 }
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 16.0909, 29.0503 )
+[sub_resource type="CapsuleShape2D" id=14]
+radius = 15.9292
+height = 27.5942
 
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 2 )
@@ -160,12 +142,11 @@ autoplay = "idle"
 anims/attack1 = SubResource( 6 )
 anims/attack2 = SubResource( 7 )
 anims/attack3 = SubResource( 8 )
-anims/fall = SubResource( 1 )
-anims/idle = SubResource( 2 )
-anims/jump = SubResource( 3 )
-anims/ledge_climb = SubResource( 11 )
-anims/ledge_grab = SubResource( 10 )
-anims/walk = SubResource( 4 )
+anims/fall = SubResource( 9 )
+anims/idle = SubResource( 10 )
+anims/jump = SubResource( 11 )
+anims/ledge_climb = SubResource( 12 )
+anims/walk = SubResource( 13 )
 
 [node name="BodyPivot" type="Position2D" parent="."]
 
@@ -177,7 +158,7 @@ hframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 5.926 )
-shape = SubResource( 5 )
+shape = SubResource( 14 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 3 )
