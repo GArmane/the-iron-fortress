@@ -6,26 +6,27 @@ extends Node
 
 signal state_changed(state)
 
-export(NodePath) var initial_state
+export(String) var initial_state
 
 onready var _active: bool = false setget set_active, is_active
 onready var _stack: Stack = Stack.new()
 onready var _states: Dictionary = {}
+onready var _signal_map: Dictionary = {
+	"finished": "on_state_finished",
+}
 
 
 # Callbacks
+func _ready():
+	assert(initial_state, "must set state machine initial state")
+
+
 func _input(event: InputEvent) -> void:
 	_stack.peek().handle_input(event)
 
 
 func _physics_process(delta: float) -> void:
 	_stack.peek().update(delta)
-
-
-func _ready():
-	for child in get_children():
-		child.connect("finished", self, "on_state_finished")
-	initialize()
 
 
 # Private API
@@ -40,9 +41,13 @@ func get_current_state():
 
 
 func initialize() -> void:
+	for signal_ in _signal_map:
+		for state in _states.values():
+			state.connect(signal_, self, _signal_map[signal_])
+
 	set_active(true)
 
-	var state = get_node(initial_state)
+	var state = _states[initial_state]
 	_stack.push(state)
 	state.enter()
 
@@ -53,6 +58,9 @@ func reset() -> void:
 
 
 func shutdown() -> void:
+	for signal_ in _signal_map:
+		for state in _states.values():
+			state.disconnect(signal_, self, _signal_map[signal_])
 	set_active(false)
 
 

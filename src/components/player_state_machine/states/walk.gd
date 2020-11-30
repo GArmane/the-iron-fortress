@@ -1,10 +1,14 @@
 extends "base_motion.gd"
 
 
+# Private API
+func _init(player: Player):
+	_player = player
+
+
 # Public API
 func enter() -> void:
-	player.motion.x = 0
-	player.play_animation("idle")
+	_player.play_animation("walk")
 
 
 func handle_input(event: InputEvent) -> void:
@@ -13,10 +17,13 @@ func handle_input(event: InputEvent) -> void:
 
 
 func update(_delta: float) -> void:
-	if player.is_falling():
+	if _player.is_falling():
 		emit_signal("finished", "fall")
 		return
 
 	var input_direction = _get_input_direction()
-	if input_direction:
-		emit_signal("finished", "walk")
+	if not input_direction:
+		emit_signal("finished", "idle")
+		return
+
+	_set_motion(input_direction)

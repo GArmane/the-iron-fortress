@@ -12,6 +12,10 @@ export var speed = 200
 
 
 # Callbacks
+func _ready():
+	$StateMachine.initialize()
+
+
 func _physics_process(_delta):
 	motion.x *= speed
 	motion.y += GRAVITY

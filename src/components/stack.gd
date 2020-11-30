@@ -2,9 +2,15 @@ class_name Stack
 extends Node
 
 
-const _stack = []
+var _stack = []
 
 
+# Private API
+func _init(initial: Array = []):
+	_stack = initial
+
+
+# Public API
 func clear():
 	_stack.clear()
 

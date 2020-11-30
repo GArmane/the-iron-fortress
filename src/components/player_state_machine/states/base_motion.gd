@@ -1,7 +1,7 @@
 extends State
 
-onready var player: Player = owner
-
+var _player: Player
+	
 
 func _get_input_direction() -> Vector2:
 	return Vector2(
@@ -11,6 +11,6 @@ func _get_input_direction() -> Vector2:
 
 
 func _set_motion(input_direction: Vector2) -> Vector2:
-	player.direction = input_direction
-	player.motion.x = input_direction.x
+	_player.direction = input_direction
+	_player.motion.x = input_direction.x
 	return input_direction
