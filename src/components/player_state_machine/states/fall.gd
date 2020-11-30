@@ -12,10 +12,6 @@ func enter() -> void:
 	_player.play_animation("fall")
 
 
-func exit() -> void:
-	_player.motion.x = 0
-
-
 func update(_delta: float) -> void:
 	var input_direction = _get_input_direction()
 	_player.direction = input_direction
