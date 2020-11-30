@@ -12,5 +12,5 @@ func _get_input_direction() -> Vector2:
 
 func _set_motion(input_direction: Vector2) -> Vector2:
 	_player.direction = input_direction
-	_player.motion.x = input_direction.x
+	_player.velocity.x = input_direction.x
 	return input_direction

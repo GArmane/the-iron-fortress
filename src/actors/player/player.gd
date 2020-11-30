@@ -5,7 +5,7 @@ const UP = Vector2(0, -1)
 const GRAVITY = 10
 
 var direction = Vector2(1, 1) setget set_direction
-var motion = Vector2(0, 0)
+var velocity = Vector2(0, 0)
 
 export var jump_height = 300
 export var speed = 200
@@ -17,9 +17,9 @@ func _ready():
 
 
 func _physics_process(_delta):
-	motion.x *= speed
-	motion.y += GRAVITY
-	motion = move_and_slide(motion, UP, true)
+	velocity.x *= speed
+	velocity.y += GRAVITY
+	velocity = move_and_slide(velocity, UP, true)
 
 
 # Public API
@@ -29,7 +29,7 @@ func current_animation() -> String:
 
 func is_falling() -> bool:
 	var next_to_ground = test_move(transform, Vector2(0, 10))
-	return motion.y >= 0 and not next_to_ground
+	return velocity.y >= 0 and not next_to_ground
 
 
 func play_animation(name: String) -> void:
