@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/sprites/player/sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/actors/player/player.gd" type="Script" id=2]
@@ -101,6 +101,37 @@ tracks/0/keys = {
 "values": [ 14, 15, 16, 17 ]
 }
 
+[sub_resource type="Animation" id=9]
+resource_name = "ledge_climb"
+tracks/0/type = "value"
+tracks/0/path = NodePath("BodyPivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 1,
+"values": [  ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "ledge_grab"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("BodyPivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 29, 30, 31, 32 ]
+}
+
 [sub_resource type="Animation" id=4]
 resource_name = "walk"
 loop = true
@@ -131,6 +162,8 @@ anims/attack3 = SubResource( 8 )
 anims/fall = SubResource( 1 )
 anims/idle = SubResource( 2 )
 anims/jump = SubResource( 3 )
+anims/ledge_climb = SubResource( 9 )
+anims/ledge_grab = SubResource( 10 )
 anims/walk = SubResource( 4 )
 
 [node name="BodyPivot" type="Position2D" parent="."]
@@ -140,6 +173,7 @@ scale = Vector2( 2, 2 )
 texture = ExtResource( 1 )
 vframes = 12
 hframes = 8
+frame = 29
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 5.926 )
