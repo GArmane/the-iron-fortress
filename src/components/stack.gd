@@ -1,6 +1,5 @@
 class_name Stack
-extends Node
-
+extends Resource
 
 var _stack = []
 
