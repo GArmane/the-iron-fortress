@@ -4,7 +4,7 @@
 [ext_resource path="res://src/actors/player/player.gd" type="Script" id=2]
 [ext_resource path="res://src/components/player_state_machine/player_state_machine.gd" type="Script" id=3]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=1]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyPivot/Sprite:frame")
@@ -19,7 +19,7 @@ tracks/0/keys = {
 "values": [ 14, 15, 16, 17 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=2]
 resource_name = "ledge_climb"
 length = 0.8
 tracks/0/type = "value"
@@ -35,7 +35,7 @@ tracks/0/keys = {
 "values": [ 33, 34, 35, 36, 37 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=3]
 resource_name = "ledge_grab"
 loop = true
 tracks/0/type = "value"
@@ -51,7 +51,7 @@ tracks/0/keys = {
 "values": [ 29, 30, 31, 32 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=4]
 resource_name = "fall"
 length = 0.3
 loop = true
@@ -68,7 +68,7 @@ tracks/0/keys = {
 "values": [ 22, 23 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=5]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyPivot/Sprite:frame")
@@ -83,7 +83,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=6]
 resource_name = "jump"
 length = 0.6
 tracks/0/type = "value"
@@ -99,7 +99,7 @@ tracks/0/keys = {
 "values": [ 14, 15, 16, 17 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=7]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyPivot/Sprite:frame")
@@ -114,7 +114,7 @@ tracks/0/keys = {
 "values": [ 33, 34, 35, 36, 37 ]
 }
 
-[sub_resource type="Animation" id=13]
+[sub_resource type="Animation" id=8]
 resource_name = "walk"
 loop = true
 tracks/0/type = "value"
@@ -130,7 +130,7 @@ tracks/0/keys = {
 "values": [ 9, 10, 11, 12, 13 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=14]
+[sub_resource type="CapsuleShape2D" id=9]
 radius = 15.9292
 height = 27.5942
 
@@ -139,14 +139,14 @@ script = ExtResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
-anims/attack1 = SubResource( 6 )
-anims/attack2 = SubResource( 7 )
-anims/attack3 = SubResource( 8 )
-anims/fall = SubResource( 9 )
-anims/idle = SubResource( 10 )
-anims/jump = SubResource( 11 )
-anims/ledge_climb = SubResource( 12 )
-anims/walk = SubResource( 13 )
+anims/attack1 = SubResource( 1 )
+anims/attack2 = SubResource( 2 )
+anims/attack3 = SubResource( 3 )
+anims/fall = SubResource( 4 )
+anims/idle = SubResource( 5 )
+anims/jump = SubResource( 6 )
+anims/ledge_climb = SubResource( 7 )
+anims/walk = SubResource( 8 )
 
 [node name="BodyPivot" type="Position2D" parent="."]
 
@@ -158,7 +158,7 @@ hframes = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 5.926 )
-shape = SubResource( 14 )
+shape = SubResource( 9 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 3 )

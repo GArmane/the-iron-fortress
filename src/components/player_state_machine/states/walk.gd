@@ -21,9 +21,7 @@ func update(_delta: float) -> void:
 		emit_signal("finished", "fall")
 		return
 
-	var input_direction = _get_input_direction()
-	if not input_direction:
+	if not _get_input():
 		emit_signal("finished", "idle")
 		return
-
-	_set_motion(input_direction)
+	_process_input()

@@ -8,7 +8,7 @@ func _init(player: Player):
 
 # Public API
 func enter() -> void:
-	_player.velocity.x = 0
+	_process_input()
 	_player.play_animation("idle")
 
 
@@ -22,6 +22,5 @@ func update(_delta: float) -> void:
 		emit_signal("finished", "fall")
 		return
 
-	var input_direction = _get_input_direction()
-	if input_direction:
+	if _get_input():
 		emit_signal("finished", "walk")

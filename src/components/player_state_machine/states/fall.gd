@@ -8,14 +8,11 @@ func _init(player: Player):
 
 # Public API
 func enter() -> void:
-	_player.velocity.x = 0
 	_player.play_animation("fall")
 
 
 func update(_delta: float) -> void:
-	var input_direction = _get_input_direction()
-	_player.direction = input_direction
-	_player.velocity.x = input_direction.x
-
 	if _player.is_on_floor():
 		emit_signal("finished", "idle")
+		return
+	_process_input()

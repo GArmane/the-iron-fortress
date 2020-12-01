@@ -8,8 +8,8 @@ func _init(player: Player):
 
 # Public API
 func enter() -> void:
+	_player.velocity.y = -_player.jump_height
 	_player.play_animation("jump")
-	_player.velocity.y -= _player.jump_height
 
 
 func update(_delta: float) -> void:
@@ -18,5 +18,4 @@ func update(_delta: float) -> void:
 	elif _player.is_falling():
 		emit_signal("finished", "fall")
 	else:
-		var input_direction = _get_input_direction()
-		_set_motion(input_direction)
+		_process_input()
