@@ -22,5 +22,5 @@ func update(_delta: float) -> void:
 		emit_signal("finished", "fall")
 		return
 
-	if _get_input():
+	if _get_input().x:
 		emit_signal("finished", "walk")
