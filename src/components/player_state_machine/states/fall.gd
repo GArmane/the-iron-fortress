@@ -8,7 +8,7 @@ func _init(player: Player):
 
 # Public API
 func enter() -> void:
-	_player.play_animation("fall")
+	_player.animation_player.play("fall")
 
 
 func update(_delta: float) -> void:

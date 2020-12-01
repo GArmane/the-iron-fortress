@@ -9,7 +9,7 @@ func _init(player: Player):
 # Public API
 func enter() -> void:
 	_player.velocity.y = -_player.jump_height
-	_player.play_animation("jump")
+	_player.animation_player.play("jump")
 
 
 func update(_delta: float) -> void:

@@ -9,12 +9,14 @@ func _init(player: Player):
 # Public API
 func enter() -> void:
 	_process_input()
-	_player.play_animation("idle")
+	_player.animation_player.play("idle")
 
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_jump"):
 		emit_signal("finished", "jump")
+	elif event.is_action_pressed("player_attack"):
+		emit_signal("finished", "attack")
 
 
 func update(_delta: float) -> void:

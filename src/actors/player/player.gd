@@ -4,11 +4,17 @@ extends KinematicBody2D
 const UP = Vector2(0, -1)
 const GRAVITY = 10
 
+onready var animation_player = $AnimationPlayer
+
 var motion = Vector2(0, 0) setget set_motion
 var velocity = Vector2(0, 0)
 
 export var jump_height = 300
 export var speed = 200
+export var attack_threshold = {
+	"attack1": 0.45,
+	"attack2": 0.45,
+}
 
 
 # Callbacks
@@ -23,15 +29,6 @@ func _physics_process(_delta):
 
 
 # Public API
-## Animations
-func current_animation() -> String:
-	return $AnimationPlayer.current_animation
-
-
-func play_animation(name: String) -> void:
-	$AnimationPlayer.play(name)
-
-
 ## Sprite orientation
 func change_orientation():
 	$BodyPivot.set_scale(Vector2(-$BodyPivot.scale.x, 1))
