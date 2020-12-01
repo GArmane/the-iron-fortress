@@ -8,6 +8,7 @@ func _init(player: Player):
 
 # Public API
 func enter() -> void:
+	_process_orientation(_get_input())
 	_player.play_animation("walk")
 
 
@@ -21,7 +22,7 @@ func update(_delta: float) -> void:
 		emit_signal("finished", "fall")
 		return
 
-	if not _get_input():
+	if not _process_input():
 		emit_signal("finished", "idle")
 		return
-	_process_input()
+	

@@ -10,8 +10,14 @@ func _get_input() -> Vector2:
 	)
 
 
-func _process_input() -> void:
-	var input = _get_input()
+func _process_orientation(input: Vector2) -> Vector2:
 	if input.x in [-1, 1] and input.x != _player.get_orientation().x:
 		_player.change_orientation()
+	return _player.get_orientation()
+
+
+func _process_input() -> Vector2:
+	var input = _get_input()
+	_process_orientation(input)
 	_player.motion = input
+	return _player.motion
