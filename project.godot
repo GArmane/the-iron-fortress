@@ -22,7 +22,7 @@ _global_script_classes=[ {
 "base": "StateMachine",
 "class": "PlayerStateMachine",
 "language": "GDScript",
-"path": "res://src/components/player_state_machine/player_state_machine.gd"
+"path": "res://src/components/player_controller/player_controller.gd"
 }, {
 "base": "Resource",
 "class": "Stack",
