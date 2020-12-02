@@ -2,7 +2,9 @@
 
 [ext_resource path="res://assets/sprites/player/sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/actors/player/player.gd" type="Script" id=2]
-[ext_resource path="res://src/components/player_controller/player_controller.gd" type="Script" id=3]
+[ext_resource path="res://src/actors/player/controller/controller.gd" type="Script" id=3]
+
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "attack1"

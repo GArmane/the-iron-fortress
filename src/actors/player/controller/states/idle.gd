@@ -8,7 +8,6 @@ func _init(player: Player):
 
 # Public API
 func enter() -> void:
-	_process_input()
 	_player.animation_player.play("idle")
 
 

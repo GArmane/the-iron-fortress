@@ -1,6 +1,10 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://src/components/player_controller/player_controller.gd" type="Script" id=1]
+[ext_resource path="res://src/actors/player/controller/controller.gd" type="Script" id=1]
+
+
+
+
 
 [node name="PlayerStateMachine" type="Node"]
 script = ExtResource( 1 )
