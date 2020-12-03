@@ -46,10 +46,6 @@ func can_grab() -> bool:
 	return $BodyPivot/LedgeDetectorDown.is_colliding() and not $BodyPivot/LedgeDetectorUp.is_colliding()
 
 
-func get_grab_point() -> Vector2:
-	return $BodyPivot/LedgeDetectorDown.get_collision_point()
-
-
 func is_falling() -> bool:
 	var next_to_ground = test_move(transform, Vector2(0, 10))
 	return velocity.y >= 0 and not next_to_ground
