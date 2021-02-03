@@ -12,7 +12,9 @@ onready var _active: bool = false setget set_active, is_active
 onready var _stack: Stack = Stack.new()
 onready var _states: Dictionary = {}
 onready var _signal_map: Dictionary = {
-	"finished": "on_state_finished",
+	"pushdown": "on_state_pushdown",
+	"popup": "on_state_popup",
+	"change": "on_state_change",
 }
 
 
@@ -27,12 +29,6 @@ func _input(event: InputEvent) -> void:
 
 func _physics_process(delta: float) -> void:
 	_stack.peek().update(delta)
-
-
-# Private API
-func _enter_state(state: State):
-	state.enter()
-	_stack.push(state)
 
 
 # Public API
@@ -85,10 +81,19 @@ func set_active(value: bool) -> void:
 
 
 # Signal handlers
-func on_state_finished(next: String) -> void:
+func on_state_pushdown(next: String) -> void:
+	push_state(next)
+	emit_signal("state_changed", get_current_state())
+
+
+func on_state_popup() -> void:
 	pop_state()
-	
-	if next == "previous":
-		get_current_state().enter()
-	else:
-		push_state(next)
+	var current_state = get_current_state()
+	current_state.enter()
+	emit_signal("state_changed", current_state)
+
+
+func on_state_change(next: String) -> void:
+	pop_state()
+	push_state(next)
+	emit_signal("state_changed", get_current_state())

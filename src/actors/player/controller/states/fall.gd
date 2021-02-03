@@ -13,8 +13,8 @@ func enter() -> void:
 
 func update(_delta: float) -> void:
 	if _player.can_grab():
-		emit_signal("finished", "ledge_grab")
+		emit_signal("change", "ledge_grab")
 	elif _player.is_on_floor():
-		emit_signal("finished", "idle")
+		emit_signal("popup")
 	else:
 		_process_input()
