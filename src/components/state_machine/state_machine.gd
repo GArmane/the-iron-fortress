@@ -42,14 +42,13 @@ func get_current_state():
 
 func initialize() -> void:
 	for signal_ in _signal_map:
-		for state in _states.values():
+		for name in _states.keys():
+			var state = _states[name]
+			state.name = name
 			state.connect(signal_, self, _signal_map[signal_])
 
 	set_active(true)
-
-	var state = _states[initial_state]
-	_stack.push(state)
-	state.enter()
+	push_state(initial_state)
 
 
 func reset() -> void:
