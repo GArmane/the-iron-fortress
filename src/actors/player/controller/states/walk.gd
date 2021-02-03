@@ -14,17 +14,16 @@ func enter() -> void:
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_jump"):
-		emit_signal("finished", "jump")
+		emit_signal("pushdown", "jump")
 	elif event.is_action_pressed("player_attack"):
-		emit_signal("finished", "attack")
+		emit_signal("pushdown", "attack")
 
 
 func update(_delta: float) -> void:
 	if _player.is_falling():
-		emit_signal("finished", "fall")
+		emit_signal("pushdown", "fall")
 		return
 
 	if not _process_input():
-		emit_signal("finished", "idle")
+		emit_signal("popup")
 		return
-	

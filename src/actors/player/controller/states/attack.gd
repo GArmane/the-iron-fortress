@@ -32,6 +32,6 @@ func handle_input(event: InputEvent) -> void:
 func on_animation_finished(name) -> void:
 	match name:
 		"attack1", "attack2", "attack3":
-			emit_signal("finished", "idle")
+			emit_signal("popup")
 		_:
 			return
