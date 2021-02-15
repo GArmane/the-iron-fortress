@@ -1,10 +1,8 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://assets/sprites/player/sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/actors/player/player.gd" type="Script" id=2]
 [ext_resource path="res://src/actors/player/controller/controller.gd" type="Script" id=3]
-
-
 
 [sub_resource type="Animation" id=1]
 resource_name = "attack1"
@@ -53,8 +51,23 @@ tracks/0/keys = {
 "values": [ 53, 54, 55, 56, 57, 58 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "fall"
+[sub_resource type="Animation" id=12]
+resource_name = "dash"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("BodyPivot/Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 14 ]
+}
+
+[sub_resource type="Animation" id=13]
 length = 0.3
 loop = true
 tracks/0/type = "value"
@@ -70,7 +83,7 @@ tracks/0/keys = {
 "values": [ 22, 23 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=14]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyPivot/Sprite:frame")
@@ -85,8 +98,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3 ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "jump"
+[sub_resource type="Animation" id=15]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyPivot/Sprite:frame")
@@ -101,7 +113,7 @@ tracks/0/keys = {
 "values": [ 14, 15, 16, 17 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=16]
 length = 0.8
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyPivot/Sprite:frame")
@@ -116,7 +128,7 @@ tracks/0/keys = {
 "values": [ 33, 34, 35, 36, 37 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=17]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyPivot/Sprite:frame")
@@ -131,7 +143,7 @@ tracks/0/keys = {
 "values": [ 29, 30, 31, 32 ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=18]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodyPivot/Sprite:frame")
@@ -146,7 +158,7 @@ tracks/0/keys = {
 "values": [ 9, 10, 11, 12, 13 ]
 }
 
-[sub_resource type="CapsuleShape2D" id=10]
+[sub_resource type="CapsuleShape2D" id=11]
 radius = 15.9292
 height = 27.5942
 
@@ -158,12 +170,13 @@ autoplay = "idle"
 anims/attack1 = SubResource( 1 )
 anims/attack2 = SubResource( 2 )
 anims/attack3 = SubResource( 3 )
-anims/fall = SubResource( 4 )
-anims/idle = SubResource( 5 )
-anims/jump = SubResource( 6 )
-anims/ledge_climb = SubResource( 7 )
-anims/ledge_grab = SubResource( 8 )
-anims/walk = SubResource( 9 )
+anims/dash = SubResource( 12 )
+anims/fall = SubResource( 13 )
+anims/idle = SubResource( 14 )
+anims/jump = SubResource( 15 )
+anims/ledge_climb = SubResource( 16 )
+anims/ledge_grab = SubResource( 17 )
+anims/walk = SubResource( 18 )
 
 [node name="BodyPivot" type="Position2D" parent="."]
 
@@ -185,7 +198,7 @@ cast_to = Vector2( 20, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 5.926 )
-shape = SubResource( 10 )
+shape = SubResource( 11 )
 
 [node name="Controller" type="Node" parent="."]
 script = ExtResource( 3 )

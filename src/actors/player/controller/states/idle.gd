@@ -9,13 +9,18 @@ func _init(player: Player):
 # Public API
 func enter() -> void:
 	_player.animation_player.play("idle")
+	_player.motion = Vector2.ZERO
 
 
 func handle_input(event: InputEvent) -> void:
 	if event.is_action_pressed("player_jump"):
 		emit_signal("pushdown", "jump")
+	elif event.is_action_pressed("player_dash"):
+		emit_signal("pushdown", "dash")
 	elif event.is_action_pressed("player_attack"):
 		emit_signal("pushdown", "attack")
+	else:
+		return
 
 
 func update(_delta: float) -> void:

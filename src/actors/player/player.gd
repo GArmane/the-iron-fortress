@@ -16,6 +16,8 @@ export var attack_threshold = {
 }
 export var jump_height = 300
 export var speed = 200
+export var dash_speed_mul = 2.0
+export var dash_time = 0.2
 
 
 # Callbacks
