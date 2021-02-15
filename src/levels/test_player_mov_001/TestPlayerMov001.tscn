@@ -88,3 +88,5 @@ __meta__ = {
 position = Vector2( 32, 336 )
 scale = Vector2( 0.8, 0.8 )
 speed = 125
+dash_speed_mul = 2.0
+dash_time = 0.2
