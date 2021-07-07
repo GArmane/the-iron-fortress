@@ -3,11 +3,13 @@ extends KinematicBody2D
 
 const UP = Vector2(0, -1)
 const GRAVITY = 10
+const FRICTION = -0.1
 
 onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 var motion = Vector2(0, 0) setget set_motion
-var velocity = Vector2(0, 0)
+var velocity = Vector2.ZERO
+var acceleration = Vector2.ZERO
 var gravity_mult = 1
 
 export var attack_threshold = {
@@ -27,11 +29,24 @@ func _ready():
 	$BodyPivot/LedgeDetectorUp.add_exception(self)
 
 
-func _physics_process(_delta):
+func _physics_process(delta):
+	acceleration = Vector2.ZERO
+
 	velocity.x = motion.x * speed
 	velocity.y += GRAVITY * gravity_mult
+	
+	apply_friction()
+
+	velocity += acceleration * delta
 	velocity = move_and_slide(velocity, UP, true)
 
+func apply_friction():
+	var friction_force = velocity * FRICTION
+	
+	if velocity.length() < 150:
+		friction_force *= 10
+	
+	acceleration += friction_force
 
 # Public API
 ## Sprite orientation
